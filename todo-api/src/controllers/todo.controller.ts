@@ -25,7 +25,7 @@ export async function getTodo(c: Context) {
   const id = c.req.param("id");
   const todo = TodoModel.findById(Number(id));
   if (!todo) {
-    return c.json({ error: "Todo not found" }, 404);
+    return c.json({ error: "Not found" });
   }
   return c.json(todo);
 }
@@ -72,11 +72,11 @@ export async function deleteTodo(c: Context) {
   const deletedTodo = TodoModel.remove(id);
 
   if (!deletedTodo) {
-    return c.json({ success: false, message: "Todo not found" }, 404);
+    return c.json({ success: false, msg: "Not found" });
   }
 
   return c.json({
-    message: "Todo deleted successfully",
+    msg: "Todo deleted successfully",
     deleted: deletedTodo,
   });
 }

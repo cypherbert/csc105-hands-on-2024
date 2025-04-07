@@ -5,7 +5,7 @@ import {
 	validateCreateTodo,
 	validateUpdateTodo,
 	validatePatchTodo,
-} from '../middlewares/validators.ts';
+} from '/Users/albertzawsam/Documents/csc105-hands-on-2024/todo-api/src/middlewares/ validators.ts';
 
 const todoRoutes = new Hono();
 

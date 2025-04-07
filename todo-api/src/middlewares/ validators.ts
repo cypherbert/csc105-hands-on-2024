@@ -8,20 +8,13 @@ export async function validateIdParam(c: Context, next: Next) {
     if (!id) {
       return c.json({
         success: false,
-        msg: `ID ${id} does not exist`,
-      });
-    }
-
-    if (!/^\d+$/.test(id)) {
-      return c.json({
-        success: false,
-        msg: `ID is supposed to be a number`,
+        msg: 'ID number ${id} does not exist',
       });
     }
 
     await next();
   } catch (error) {
-    return c.json({ error: "Invalid Param" }, 400);
+    return c.json({ error: "Invalid Param" });
   }
 }
 
