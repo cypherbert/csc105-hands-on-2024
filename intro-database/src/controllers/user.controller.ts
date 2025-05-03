@@ -65,7 +65,7 @@ const getAllUsers = async (c: Context) => {
 	}
   };
   
-  const updateUser = async (c: Context) => {
+const updateUser = async (c: Context) => {
 	try {
 	  const userId = c.req.param("id");
 	  const body = await c.req.json();
@@ -81,7 +81,7 @@ const getAllUsers = async (c: Context) => {
 		);
 	  }
   
-	  const updatedUser = await userModel.updateUserName(
+	  const updatedUser = await userModel.updateNames(
 		parseInt(userId),
 		body.firstName,
 		body.lastName
@@ -102,7 +102,8 @@ const getAllUsers = async (c: Context) => {
 		500
 	  );
 	}
-  };
+};
 export { createUser };
 export { getAllUsers };
 export { updateUser };
+

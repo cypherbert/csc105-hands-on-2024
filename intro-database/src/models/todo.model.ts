@@ -65,5 +65,5 @@ const getTodosByUser = async (userId: number) => {
 };
   
 
-export { createTodo, getTodo, getAllTodos, deleteTodo, getAllUsers ,completeTodo};
+export { createTodo, getTodo, getAllTodos, deleteTodo, getAllUsers ,completeTodo,updateTitle,getTodosByUser };
 

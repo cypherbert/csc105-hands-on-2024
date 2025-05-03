@@ -73,7 +73,7 @@ const completeTodo = async (c: Context) => {
         );
       }
   
-      const updated = await todoModel.markComplete(parseInt(id));
+      const updated = await todoModel.completeTodo(parseInt(id));
       return c.json({
         success: true,
         data: updated,
