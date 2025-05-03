@@ -41,7 +41,7 @@ const App = () => {
     }
     await fetchTodoData();
   }
-
+  
   const fetchTodoData = async () => {
 		const data = await todoAPI.getTodo();
 		if (data.success && data.data!== null) {

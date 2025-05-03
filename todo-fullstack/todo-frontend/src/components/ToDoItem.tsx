@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Todo } from '../types/todo';
 
+// type ToDoItemProps = {
+//     todo: Todo;
+// }
 
-
-const ToDoItem = ({todo, handleEdit, handleSuccess, handleDelete, idNum}: { todo: Todo, handleEdit: (id: number, newName: string) => void, handleSuccess: (id: number) => void, handleDelete: (id: number) => void, idNum: number }) => {
+const ToDoItem = ({todo, handleEdit, handleSuccess, handleDelete, idNum}) => {
     const [newName, setNewName] = useState('');
 
   return (
