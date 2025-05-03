@@ -15,3 +15,11 @@ serve({
 }, (info) => {
   console.log(`Server is running on http://localhost:${info.port}`)
 })
+
+db.$connect()
+	.then(() => {
+		console.log("Connected to the database");
+	})
+	.catch((error) => {
+		console.error("Error connecting to the database:", error);
+	});
