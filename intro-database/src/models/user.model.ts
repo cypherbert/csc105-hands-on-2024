@@ -19,4 +19,25 @@ const createUser = async( firstName: string, lastName: string ) => {
     });
     return user;
 }
-export { isDuplicate,createUser};
+  
+const getAllUsers = async () => {
+    const users = await db.user.findMany();
+    return users;
+  };
+  
+const updateNames = async (
+    id: number,
+    firstName: string,
+    lastName: string
+) => {
+    const user = await db.user.update({
+      where: { id },
+      data: {
+        firstName,
+        lastName,
+      },
+    });
+    return user;
+};
+  
+export { isDuplicate,createUser,getAllUsers,updateNames };
