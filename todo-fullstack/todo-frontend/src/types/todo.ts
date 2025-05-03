@@ -3,4 +3,3 @@ export type Todo = {
     name: string;
     success: boolean;
 }
-
