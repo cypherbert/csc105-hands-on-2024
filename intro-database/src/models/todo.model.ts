@@ -20,4 +20,4 @@ const getTodo = async (id: number) => {
     });
     return todo;
 }
-export { createTodo };
+export { createTodo , getTodo };
