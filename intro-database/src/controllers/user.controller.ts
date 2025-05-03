@@ -44,4 +44,65 @@ const createUser = async (c: Context) => {
 		);
 	}
 };
+
+const getAllUsers = async (c: Context) => {
+	try {
+	  const users = await userModel.getAllUsers();
+	  return c.json({
+		success: true,
+		data: users,
+		msg: "Fetched all users",
+	  });
+	} catch (e) {
+	  return c.json(
+		{
+		  success: false,
+		  data: null,
+		  msg: `${e}`,
+		},
+		500
+	  );
+	}
+  };
+  
+  const updateUser = async (c: Context) => {
+	try {
+	  const userId = c.req.param("id");
+	  const body = await c.req.json();
+  
+	  if (!body.firstName || !body.lastName) {
+		return c.json(
+		  {
+			success: false,
+			data: null,
+			msg: "Missing firstName or lastName in request body",
+		  },
+		  400
+		);
+	  }
+  
+	  const updatedUser = await userModel.updateUserName(
+		parseInt(userId),
+		body.firstName,
+		body.lastName
+	  );
+  
+	  return c.json({
+		success: true,
+		data: updatedUser,
+		msg: "User updated successfully",
+	  });
+	} catch (e) {
+	  return c.json(
+		{
+		  success: false,
+		  data: null,
+		  msg: `${e}`,
+		},
+		500
+	  );
+	}
+  };
 export { createUser };
+export { getAllUsers };
+export { updateUser };
