@@ -1,9 +1,11 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { PrismaClient } from './generated/prisma/index.d.js'
+import { mainRouter } from './routes/index.route.js'
+
 
 const app = new Hono()
-const prisma = new PrismaClient()
+export const db = new PrismaClient()
 
 app.get('/', (c) => {
   return c.text('Hello Hono!')
@@ -23,3 +25,4 @@ db.$connect()
 	.catch((error) => {
 		console.error("Error connecting to the database:", error);
 	});
+  app.route("", mainRouter);
