@@ -9,4 +9,15 @@ const createTodo = async (title: string, userId: number) => {
     });
     return todo;
 }
+const getTodo = async (id: number) => {
+    const todo = await db.todo.findUnique({
+         where: {
+            id: id,
+        },
+        include: {
+            user: true, 
+        },
+    });
+    return todo;
+}
 export { createTodo };
