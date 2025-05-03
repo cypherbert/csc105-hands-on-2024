@@ -63,4 +63,83 @@ const getTodo = async (c: Context) => {
         );
     }
 }
-export { createTodo , getTodo };
+const completeTodo = async (c: Context) => {
+    try {
+      const id = c.req.param("id");
+      if (!id) {
+        return c.json(
+          { success: false, data: null, msg: "Missing todo ID" },
+          400
+        );
+      }
+  
+      const updated = await todoModel.markComplete(parseInt(id));
+      return c.json({
+        success: true,
+        data: updated,
+        msg: "Todo marked as complete",
+      });
+    } catch (e) {
+      return c.json({ success: false, data: null, msg: `${e}` }, 500);
+    }
+  };
+  
+const updateTodoTitle = async (c: Context) => {
+    try {
+      const todoId = c.req.param("id");
+      const body = await c.req.json();
+  
+      if (!body.title) {
+        return c.json(
+          {
+            success: false,
+            data: null,
+            msg: "Missing title in the request body",
+          },
+          400
+        );
+      }
+  
+      const updatedTodo = await todoModel.updateTitle(todoId, body.title);
+  
+      return c.json({
+        success: true,
+        data: updatedTodo,
+        msg: "Todo title updated successfully!",
+      });
+    } catch (e) {
+      return c.json(
+        {
+          success: false,
+          data: null,
+          msg: `${e}`,
+        },
+        500
+      );
+    }
+};
+  
+const getUserTodos = async (c: Context) => {
+    try {
+      const userId = c.req.param("id");
+  
+      if (!userId) {
+        return c.json(
+          { success: false, data: null, msg: "Missing user ID" },
+          400
+        );
+      }
+  
+      const todos = await todoModel.getTodosByUser(parseInt(userId));
+  
+      return c.json({
+        success: true,
+        data: todos,
+        msg: "Fetched user's todos successfully",
+      });
+    } catch (e) {
+      return c.json({ success: false, data: null, msg: `${e}` }, 500);
+    }
+};
+export { createTodo, getTodo, completeTodo, updateTodoTitle, getUserTodos };
+  
